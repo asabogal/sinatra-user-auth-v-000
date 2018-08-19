@@ -1,3 +1,4 @@
+require 'pry'
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :views, Proc.new { File.join(root, "../views/") }
@@ -17,6 +18,7 @@ class ApplicationController < Sinatra::Base
 
   post '/registrations' do
     @user = User.new[params]
+    binding.pry
     @user.save
     redirect '/users/home'
   end
